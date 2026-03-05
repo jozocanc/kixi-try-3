@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kixi Café & Garden — Boca Raton</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blush: #F0A9A0;
+  --blush-light: #FAD8D3;
+  --blush-xlight: #FEF0EE;
+  --blush-deep: #D96B60;
+  --black: #0F0A0A;
+  --off-white: #FDF6F4;
+  --warm-gray: #9A8885;
+  --cream: #FAF0ED;
+  --cream-mid: #F5E6E2;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--off-white);
+  color:var(--black);
+  overflow-x:hidden;
+}
+
+/* ─── PAGE SYSTEM ─── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ─── NAV ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.3rem 5rem;
+  background:rgba(253,246,244,0.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(240,169,160,0.18);
+  transition:box-shadow 0.3s;
+}
+.nav-logo {
+  font-family:'Playfair Display',serif;
+  font-style:italic; font-size:1.6rem;
+  color:var(--black); text-decoration:none;
+  letter-spacing:0.01em; cursor:pointer;
+}
+.nav-links { display:flex; gap:2.2rem; list-style:none; align-items:center; }
+.nav-links a {
+  text-decoration:none; color:var(--black);
+  font-size:0.74rem; font-weight:500;
+  letter-spacing:0.13em; text-transform:uppercase;
+  transition:color 0.2s; cursor:pointer;
+  padding-bottom:2px; border-bottom:1.5px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active { color:var(--blush-deep); border-bottom-color:var(--blush-deep); }
+.nav-reserve {
+  background:var(--black); color:#fff !important;
+  padding:0.65rem 1.6rem; border-radius:50px;
+  border-bottom:none !important;
+  transition:background 0.2s !important;
+}
+.nav-reserve:hover { background:var(--blush-deep) !important; }
+
+/* ─── SHARED ─── */
+.section-eyebrow {
+  display:inline-flex; align-items:center; gap:0.6rem;
+  font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--blush-deep); font-weight:600; margin-bottom:1.4rem;
+}
+.section-eyebrow::before { content:''; width:28px; height:1.5px; background:var(--blush-deep); }
+
+.btn-dark {
+  display:inline-block; background:var(--black); color:#fff;
+  padding:0.95rem 2.2rem; border-radius:50px; text-decoration:none;
+  font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  border:2px solid var(--black); transition:all 0.25s; cursor:pointer;
+}
+.btn-dark:hover { background:transparent; color:var(--black); }
+.btn-pink {
+  display:inline-block; background:var(--blush-deep); color:#fff;
+  padding:0.95rem 2.2rem; border-radius:50px; text-decoration:none;
+  font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  border:2px solid var(--blush-deep); transition:all 0.25s; cursor:pointer;
+}
+.btn-pink:hover { background:transparent; color:var(--blush-deep); }
+.btn-ghost {
+  display:inline-block; background:transparent; color:var(--black);
+  padding:0.95rem 2.2rem; border-radius:50px; text-decoration:none;
+  font-size:0.78rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;
+  border:2px solid rgba(0,0,0,0.18); transition:all 0.25s; cursor:pointer;
+}
+.btn-ghost:hover { border-color:var(--black); }
+
+/* ────────────────────────────────────────────
+   HOME PAGE
+──────────────────────────────────────────── */
+#page-home { padding-top:80px; }
+
+/* Hero */
+.home-hero {
+  min-height:100vh;
+  display:grid; grid-template-columns:55% 45%;
+}
+.home-hero-left {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:7rem 5rem 7rem 7rem;
+}
+.home-hero-left h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.2rem,5.5vw,6rem);
+  font-weight:400; line-height:1.02;
+  letter-spacing:-0.025em; margin-bottom:1.6rem;
+}
+.home-hero-left h1 em { font-style:italic; color:var(--blush-deep); }
+.home-hero-left .lead {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem; font-weight:300;
+  color:var(--warm-gray); line-height:1.75;
+  max-width:420px; margin-bottom:2.8rem;
+}
+.home-hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+.home-hero-stats {
+  display:flex; gap:3rem; margin-top:4rem;
+  padding-top:2.5rem; border-top:1px solid rgba(0,0,0,0.07);
+}
+.stat-item { display:flex; flex-direction:column; gap:0.25rem; }
+.stat-num {
+  font-family:'Playfair Display',serif;
+  font-size:2rem; font-weight:400; color:var(--black); line-height:1;
+}
+.stat-label {
+  font-size:0.67rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--warm-gray);
+}
+
+.home-hero-right {
+  position:relative; overflow:hidden;
+  background:linear-gradient(145deg,var(--blush-light) 0%,var(--blush) 55%,var(--blush-deep) 100%);
+}
+.hero-deco-circle {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:380px; height:380px; border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+}
+.hero-deco-circle-2 {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:500px; height:500px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.hero-food-collage {
+  position:absolute; inset:0;
+  display:grid; grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:0; z-index:1;
+}
+.hero-food-tile {
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:background 0.3s;
+}
+.hero-food-tile:hover { background:rgba(255,255,255,0.14); }
+.hero-badge {
+  position:absolute; bottom:2.5rem; right:2.5rem; z-index:2;
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(12px);
+  border-radius:18px; padding:1.2rem 1.6rem;
+  box-shadow:0 12px 40px rgba(0,0,0,0.12);
+}
+.hero-badge-est {
+  font-size:0.62rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--warm-gray); margin-bottom:0.3rem;
+}
+.hero-badge-name {
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem; font-style:italic; color:var(--black);
+}
+.hero-badge-loc {
+  font-size:0.72rem; color:var(--warm-gray); margin-top:0.2rem;
+}
+
+/* Marquee */
+.marquee-bar { background:var(--black); padding:1.1rem 0; overflow:hidden; }
+.marquee-track {
+  display:flex; animation:marquee 30s linear infinite;
+  white-space:nowrap;
+}
+.marquee-item {
+  display:flex; align-items:center; gap:1.5rem;
+  padding:0 2rem;
+  font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--blush-light);
+}
+.marquee-dot { width:3px; height:3px; border-radius:50%; background:var(--blush); flex-shrink:0; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* Home Feature Cards */
+.home-features {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:0; border-top:1px solid rgba(0,0,0,0.06);
+}
+.feature-card {
+  padding:4rem 3.5rem; border-right:1px solid rgba(0,0,0,0.06);
+  cursor:pointer; transition:background 0.3s;
+  position:relative; overflow:hidden;
+}
+.feature-card:last-child { border-right:none; }
+.feature-card:hover { background:var(--cream); }
+.feature-card-emoji { font-size:2.5rem; margin-bottom:1.5rem; display:block; }
+.feature-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem; font-weight:400; margin-bottom:0.8rem;
+}
+.feature-card p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem; font-weight:300;
+  color:var(--warm-gray); line-height:1.7; margin-bottom:1.5rem;
+}
+.feature-card-link {
+  font-size:0.72rem; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--blush-deep);
+  display:flex; align-items:center; gap:0.5rem;
+}
+.feature-card-link::after { content:'→'; transition:transform 0.2s; }
+.feature-card:hover .feature-card-link::after { transform:translateX(4px); }
+
+/* Home CTA Band */
+.home-cta-band {
+  background:var(--blush-deep); color:white;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:4rem 7rem;
+}
+.home-cta-band h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3vw,3rem);
+  font-weight:400; line-height:1.2;
+}
+.home-cta-band h2 em { font-style:italic; opacity:0.8; }
+.btn-white {
+  background:#fff; color:var(--blush-deep);
+  padding:1rem 2.4rem; border-radius:50px;
+  font-size:0.78rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase;
+  border:none; cursor:pointer; white-space:nowrap;
+  transition:transform 0.2s;
+}
+.btn-white:hover { transform:scale(1.03); }
+
+/* Home Highlights */
+.home-highlights {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:70vh;
+}
+.home-highlights-left {
+  background:var(--black); padding:7rem;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.home-highlights-left .section-eyebrow { color:var(--blush); }
+.home-highlights-left .section-eyebrow::before { background:var(--blush); }
+.home-highlights-left h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3.5rem);
+  font-weight:400; color:white; margin-bottom:1.5rem;
+}
+.home-highlights-left h2 em { font-style:italic; color:var(--blush); }
+.home-highlights-left p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:300;
+  color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:2.5rem;
+  max-width:400px;
+}
+.review-pull {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; font-style:italic;
+  color:white; line-height:1.6; margin-bottom:1rem;
+  padding-left:1.5rem; border-left:3px solid var(--blush);
+}
+.review-pull-attr {
+  font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--warm-gray); padding-left:1.5rem;
+}
+.home-highlights-right {
+  background:var(--cream);
+  display:grid; grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+.highlight-tile {
+  padding:3rem 2.5rem; border-right:1px solid rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  display:flex; flex-direction:column; gap:0.8rem;
+  transition:background 0.3s; cursor:default;
+}
+.highlight-tile:hover { background:white; }
+.highlight-tile-icon { font-size:2rem; }
+.highlight-tile-title {
+  font-family:'Playfair Display',serif;
+  font-size:1rem; font-weight:500;
+}
+.highlight-tile-text {
+  font-size:0.82rem; color:var(--warm-gray); line-height:1.6;
+}
+
+/* ────────────────────────────────────────────
+   MENU PAGE
+──────────────────────────────────────────── */
+#page-menu { padding-top:80px; }
+
+.menu-hero {
+  background:var(--cream); padding:6rem 7rem 4rem;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:4rem; align-items:center;
+}
+.menu-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:400; line-height:1.05;
+  letter-spacing:-0.025em;
+}
+.menu-hero h1 em { font-style:italic; color:var(--blush-deep); }
+.menu-hero-right {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-weight:300;
+  color:var(--warm-gray); line-height:1.85;
+}
+.menu-hero-tags {
+  display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1.5rem;
+}
+.menu-tag {
+  padding:0.4rem 1rem; border-radius:50px;
+  background:white; border:1.5px solid rgba(0,0,0,0.1);
+  font-size:0.72rem; font-weight:500; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--warm-gray);
+}
+
+.menu-nav-bar {
+  position:sticky; top:80px; z-index:100;
+  background:white; border-bottom:1px solid rgba(0,0,0,0.08);
+  display:flex; gap:0; overflow-x:auto; scrollbar-width:none;
+}
+.menu-nav-bar::-webkit-scrollbar { display:none; }
+.menu-nav-item {
+  padding:1.2rem 2.2rem; font-size:0.75rem;
+  font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+  cursor:pointer; border-bottom:2.5px solid transparent;
+  color:var(--warm-gray); white-space:nowrap; transition:all 0.2s;
+}
+.menu-nav-item:hover, .menu-nav-item.active {
+  color:var(--blush-deep); border-bottom-color:var(--blush-deep);
+}
+
+.menu-category { padding:5rem 7rem; border-bottom:1px solid rgba(0,0,0,0.06); }
+.menu-category:last-child { border-bottom:none; }
+.menu-category-header {
+  display:flex; align-items:baseline; gap:1.5rem; margin-bottom:3rem;
+}
+.menu-category-header h2 {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem; font-weight:400;
+}
+.menu-category-header .menu-cat-desc {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; color:var(--warm-gray); font-weight:300;
+}
+.menu-items-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+.menu-item {
+  display:flex; align-items:flex-start; gap:1.5rem;
+  padding:1.8rem; border-radius:16px;
+  border:1.5px solid rgba(0,0,0,0.06);
+  background:white; transition:all 0.25s;
+}
+.menu-item:hover { border-color:var(--blush); transform:translateY(-2px); box-shadow:0 8px 30px rgba(217,107,96,0.1); }
+.menu-item-emoji { font-size:2.2rem; flex-shrink:0; }
+.menu-item-body { flex:1; }
+.menu-item-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem; }
+.menu-item-name {
+  font-family:'Playfair Display',serif;
+  font-size:1rem; font-weight:500;
+}
+.menu-item-price {
+  font-family:'Playfair Display',serif;
+  font-size:1rem; color:var(--blush-deep); flex-shrink:0; margin-left:1rem;
+}
+.menu-item-desc { font-size:0.82rem; color:var(--warm-gray); line-height:1.6; }
+.menu-item-badge {
+  display:inline-block; margin-top:0.5rem;
+  padding:0.2rem 0.6rem; border-radius:20px;
+  background:var(--blush-xlight); color:var(--blush-deep);
+  font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+}
+
+/* ────────────────────────────────────────────
+   OUR STORY PAGE
+──────────────────────────────────────────── */
+#page-story { padding-top:80px; }
+
+.story-hero {
+  min-height:65vh;
+  background:var(--black);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:8rem 7rem;
+  position:relative; overflow:hidden;
+}
+.story-hero::before {
+  content:'';
+  position:absolute; top:-200px; right:-200px;
+  width:700px; height:700px; border-radius:50%;
+  background:radial-gradient(circle,rgba(240,169,160,0.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.story-hero .section-eyebrow { color:var(--blush); }
+.story-hero .section-eyebrow::before { background:var(--blush); }
+.story-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,6.5rem);
+  font-weight:400; color:white; line-height:1.02;
+  letter-spacing:-0.025em; max-width:800px;
+}
+.story-hero h1 em { font-style:italic; color:var(--blush); }
+
+.story-body {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.story-body-left {
+  padding:7rem; background:var(--cream);
+  display:flex; flex-direction:column; gap:2rem;
+}
+.story-body-left p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem; font-weight:300;
+  color:#5a4f4d; line-height:1.9;
+}
+.story-body-left p strong {
+  font-weight:500; color:var(--black);
+}
+.story-body-right {
+  padding:7rem 5rem; background:white;
+  display:flex; flex-direction:column; gap:2.5rem;
+}
+.story-value-item { display:flex; align-items:flex-start; gap:1.5rem; }
+.story-value-num {
+  font-family:'Playfair Display',serif;
+  font-size:3rem; font-weight:400; color:var(--blush-light);
+  line-height:1; flex-shrink:0; width:50px; text-align:center;
+}
+.story-value-content h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem; font-weight:500; margin-bottom:0.5rem;
+}
+.story-value-content p {
+  font-size:0.88rem; color:var(--warm-gray); line-height:1.7;
+}
+
+.story-team-band {
+  background:var(--blush-deep); color:white;
+  padding:6rem 7rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+}
+.story-team-band h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3.5rem);
+  font-weight:400; line-height:1.15;
+}
+.story-team-band h2 em { font-style:italic; opacity:0.8; }
+.story-team-band p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-weight:300;
+  color:rgba(255,255,255,0.75); line-height:1.85;
+}
+
+/* ────────────────────────────────────────────
+   GALLERY PAGE
+──────────────────────────────────────────── */
+#page-gallery { padding-top:80px; }
+
+.gallery-hero {
+  padding:6rem 7rem 4rem;
+  background:var(--cream);
+}
+.gallery-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5vw,5.5rem);
+  font-weight:400; line-height:1.05;
+  letter-spacing:-0.025em; margin-bottom:1rem;
+}
+.gallery-hero h1 em { font-style:italic; color:var(--blush-deep); }
+.gallery-hero p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:300; color:var(--warm-gray);
+  max-width:550px; line-height:1.7;
+}
+
+.gallery-masonry {
+  padding:4rem 7rem 7rem;
+  columns:3; column-gap:1.5rem;
+}
+.gallery-cell {
+  break-inside:avoid; margin-bottom:1.5rem;
+  border-radius:20px; overflow:hidden;
+  cursor:pointer; position:relative;
+}
+.gallery-cell-inner {
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem;
+  transition:transform 0.4s ease;
+}
+.gallery-cell:hover .gallery-cell-inner { transform:scale(1.04); }
+.gallery-cell-overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0); transition:background 0.3s;
+  display:flex; align-items:flex-end; padding:1.5rem;
+}
+.gallery-cell:hover .gallery-cell-overlay { background:rgba(0,0,0,0.25); }
+.gallery-cell-label {
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem; font-style:italic;
+  color:white; opacity:0; transition:opacity 0.3s;
+}
+.gallery-cell:hover .gallery-cell-label { opacity:1; }
+
+.gc-tall { height:420px; }
+.gc-med { height:280px; }
+.gc-short { height:220px; }
+.gc-wide { height:350px; }
+
+.g-a { background:linear-gradient(160deg,#FAD8D3,#F0A9A0); }
+.g-b { background:linear-gradient(160deg,#F0A9A0,#D96B60); }
+.g-c { background:linear-gradient(160deg,#FEF0EE,#FAD8D3); }
+.g-d { background:linear-gradient(160deg,#D96B60,#B54A40); }
+.g-e { background:linear-gradient(160deg,#FAF0ED,#F0A9A0); }
+.g-f { background:linear-gradient(160deg,#FAD8D3,#FEF0EE); }
+.g-g { background:linear-gradient(160deg,#C86058,#D96B60); }
+.g-h { background:linear-gradient(160deg,#F0A9A0,#FAD8D3); }
+.g-i { background:linear-gradient(160deg,#FAD8D3,#D96B60); }
+
+.gallery-ig-banner {
+  background:var(--black);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:4rem 7rem;
+  flex-wrap:wrap; gap:2rem;
+}
+.gallery-ig-banner h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,2.5vw,2.5rem);
+  font-weight:400; color:white;
+}
+.gallery-ig-banner h2 em { font-style:italic; color:var(--blush); }
+.gallery-ig-banner p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:300;
+  color:rgba(255,255,255,0.5); margin-top:0.3rem;
+}
+
+/* ────────────────────────────────────────────
+   PRIVATE EVENTS PAGE
+──────────────────────────────────────────── */
+#page-events { padding-top:80px; }
+
+.events-hero {
+  min-height:70vh;
+  background:linear-gradient(140deg,var(--blush-light),var(--blush) 50%,var(--blush-deep));
+  display:flex; flex-direction:column; justify-content:center;
+  padding:8rem 7rem;
+  position:relative; overflow:hidden;
+}
+.events-hero::after {
+  content:'✿';
+  position:absolute; bottom:-60px; right:4rem;
+  font-size:25rem; color:rgba(255,255,255,0.07);
+  line-height:1; pointer-events:none;
+}
+.events-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,6rem);
+  font-weight:400; color:var(--black);
+  line-height:1.05; letter-spacing:-0.025em;
+  max-width:700px; margin-bottom:1.5rem;
+}
+.events-hero h1 em { font-style:italic; color:white; }
+.events-hero p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem; font-weight:300;
+  color:rgba(0,0,0,0.6); line-height:1.8;
+  max-width:500px; margin-bottom:2.5rem;
+}
+
+.events-types {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.event-type-card {
+  padding:4rem 3rem;
+  border-right:1px solid rgba(0,0,0,0.06);
+  text-align:center; transition:background 0.3s;
+}
+.event-type-card:last-child { border-right:none; }
+.event-type-card:hover { background:var(--cream); }
+.event-type-icon { font-size:2.8rem; margin-bottom:1.2rem; display:block; }
+.event-type-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem; font-weight:500; margin-bottom:0.6rem;
+}
+.event-type-card p { font-size:0.82rem; color:var(--warm-gray); line-height:1.6; }
+
+.events-form-section {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:80vh;
+}
+.events-form-left {
+  background:var(--black); padding:7rem;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.events-form-left .section-eyebrow { color:var(--blush); }
+.events-form-left .section-eyebrow::before { background:var(--blush); }
+.events-form-left h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3vw,3rem);
+  font-weight:400; color:white; margin-bottom:1.5rem;
+}
+.events-form-left p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:300;
+  color:rgba(255,255,255,0.55); line-height:1.85;
+  margin-bottom:2.5rem;
+}
+.events-perks { display:flex; flex-direction:column; gap:1rem; }
+.events-perk {
+  display:flex; align-items:center; gap:1rem;
+  font-size:0.85rem; color:rgba(255,255,255,0.7);
+}
+.events-perk::before {
+  content:'✓'; width:28px; height:28px; border-radius:50%;
+  background:rgba(240,169,160,0.15); border:1px solid var(--blush);
+  color:var(--blush); display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; font-weight:700; flex-shrink:0;
+  display:inline-flex;
+}
+.events-form-right { background:var(--cream); padding:7rem; display:flex; flex-direction:column; justify-content:center; }
+.events-form-right h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem; font-weight:400; margin-bottom:2.5rem;
+}
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.form-group { margin-bottom:1.2rem; }
+.form-group label {
+  display:block; font-size:0.68rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--warm-gray); margin-bottom:0.5rem; font-weight:500;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width:100%; padding:0.9rem 1.2rem;
+  border:1.5px solid rgba(0,0,0,0.1); border-radius:12px;
+  background:white; font-family:'DM Sans',sans-serif;
+  font-size:0.88rem; color:var(--black); outline:none;
+  transition:border-color 0.2s; resize:none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color:var(--blush-deep);
+}
+
+/* ────────────────────────────────────────────
+   CONTACT PAGE
+──────────────────────────────────────────── */
+#page-contact { padding-top:80px; }
+
+.contact-hero {
+  background:var(--cream); padding:6rem 7rem 5rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;
+}
+.contact-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:400; line-height:1.05; letter-spacing:-0.025em;
+}
+.contact-hero h1 em { font-style:italic; color:var(--blush-deep); }
+.contact-hero-right {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-weight:300;
+  color:var(--warm-gray); line-height:1.85;
+}
+
+.contact-details {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.contact-detail-card {
+  padding:4rem 3.5rem;
+  border-right:1px solid rgba(0,0,0,0.06);
+}
+.contact-detail-card:last-child { border-right:none; }
+.contact-detail-icon { font-size:2rem; margin-bottom:1.2rem; display:block; }
+.contact-detail-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem; font-weight:500; margin-bottom:0.8rem;
+}
+.contact-detail-card p, .contact-detail-card a {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem; font-weight:300;
+  color:var(--warm-gray); line-height:1.7;
+  text-decoration:none; display:block;
+}
+.contact-detail-card a:hover { color:var(--blush-deep); }
+
+.contact-form-section {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:75vh;
+}
+.contact-form-left {
+  background:var(--blush-deep); padding:7rem;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.contact-form-left h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3vw,3rem);
+  font-weight:400; color:white; margin-bottom:1.2rem;
+}
+.contact-form-left h2 em { font-style:italic; }
+.contact-form-left p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:300;
+  color:rgba(255,255,255,0.7); line-height:1.85; margin-bottom:3rem;
+}
+.hours-list { display:flex; flex-direction:column; gap:0.8rem; }
+.hours-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding-bottom:0.8rem; border-bottom:1px solid rgba(255,255,255,0.12);
+  font-size:0.88rem; color:rgba(255,255,255,0.8);
+}
+.hours-row:last-child { border-bottom:none; }
+.hours-day { font-weight:500; }
+.hours-time { color:rgba(255,255,255,0.55); }
+.contact-form-right { background:white; padding:7rem; display:flex; flex-direction:column; justify-content:center; }
+.contact-form-right h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem; font-weight:400; margin-bottom:2.5rem;
+}
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background:var(--black);
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem; padding:5rem 7rem;
+}
+.footer-brand .footer-logo {
+  font-family:'Playfair Display',serif;
+  font-style:italic; font-size:1.8rem;
+  color:white; display:block; margin-bottom:1rem;
+}
+.footer-brand p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:300;
+  color:rgba(255,255,255,0.4); line-height:1.7; max-width:280px;
+}
+.footer-col h4 {
+  font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase;
+  color:rgba(255,255,255,0.35); margin-bottom:1.2rem; font-weight:600;
+}
+.footer-col a {
+  display:block; font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:300;
+  color:rgba(255,255,255,0.55); text-decoration:none; margin-bottom:0.6rem;
+  cursor:pointer; transition:color 0.2s;
+}
+.footer-col a:hover { color:var(--blush); }
+.footer-bottom {
+  background:var(--black); border-top:1px solid rgba(255,255,255,0.07);
+  padding:1.5rem 7rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-bottom p {
+  font-size:0.72rem; color:rgba(255,255,255,0.25); letter-spacing:0.06em;
+}
+
+/* ─── PAGE TRANSITIONS ─── */
+.page { animation:pageFade 0.4s ease both; }
+@keyframes pageFade {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:960px) {
+  nav { padding:1rem 1.5rem; }
+  .nav-links li:not(:last-child) { display:none; }
+  .home-hero, .story-body, .events-form-section, .contact-hero, .contact-form-section, .home-highlights, .events-hero-form { grid-template-columns:1fr; }
+  .home-hero-left, .story-body-left, .story-body-right, .events-form-left, .events-form-right, .contact-hero, .contact-form-left, .contact-form-right, .home-highlights-left { padding:4rem 2rem; }
+  .home-features, .events-types { grid-template-columns:1fr 1fr; }
+  .contact-details { grid-template-columns:1fr; }
+  .menu-items-grid { grid-template-columns:1fr; }
+  .gallery-masonry { columns:2; padding:3rem 2rem; }
+  .menu-hero, .gallery-hero, .events-hero, .menu-category, .story-hero { padding:4rem 2rem; }
+  .home-cta-band { padding:3rem 2rem; flex-direction:column; align-items:flex-start; gap:1.5rem; }
+  .site-footer { grid-template-columns:1fr 1fr; padding:4rem 2rem; gap:2rem; }
+  .footer-bottom { padding:1.5rem 2rem; flex-direction:column; gap:0.5rem; text-align:center; }
+  .story-team-band { grid-template-columns:1fr; padding:4rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a class="nav-logo" onclick="navigate('home')">Kixi</a>
+  <ul class="nav-links">
+    <li><a onclick="navigate('home')" data-page="home">Home</a></li>
+    <li><a onclick="navigate('menu')" data-page="menu">Menu</a></li>
+    <li><a onclick="navigate('story')" data-page="story">Our Story</a></li>
+    <li><a onclick="navigate('gallery')" data-page="gallery">Gallery</a></li>
+    <li><a onclick="navigate('events')" data-page="events">Private Events</a></li>
+    <li><a onclick="navigate('contact')" data-page="contact" class="nav-reserve">Reserve</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="home-hero-left">
+      <div class="section-eyebrow">Est. 2020 · Mizner Park, Boca Raton</div>
+      <h1>Boca's Most<br><em>Enchanting</em><br>Café</h1>
+      <p class="lead">Aromatic coffee, legendary Japanese soufflé pancakes, and a dog-friendly garden where every morning feels like a little celebration.</p>
+      <div class="home-hero-btns">
+        <span class="btn-dark" onclick="navigate('menu')">Explore Menu</span>
+        <span class="btn-ghost" onclick="navigate('story')">Our Story</span>
+      </div>
+      <div class="home-hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">2020</span>
+          <span class="stat-label">Est. in Boca</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">82%</span>
+          <span class="stat-label">Recommend Us</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">🐾</span>
+          <span class="stat-label">Dog Friendly</span>
+        </div>
+      </div>
+    </div>
+    <div class="home-hero-right">
+      <div class="hero-deco-circle-2"></div>
+      <div class="hero-deco-circle"></div>
+      <div class="hero-food-collage">
+        <div class="hero-food-tile">🥞</div>
+        <div class="hero-food-tile">☕</div>
+        <div class="hero-food-tile">🌸</div>
+        <div class="hero-food-tile">🍳</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-est">Kixi Café & Garden</div>
+        <div class="hero-badge-name">Est. 2020</div>
+        <div class="hero-badge-loc">📍 Mizner Park · Boca Raton</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-item">Breakfast <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Brunch <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Lunch <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Soufflé Pancakes <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Wells Coffee <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Dog-Friendly Patio <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Private Events <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Mizner Park <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Breakfast <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Brunch <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Lunch <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Soufflé Pancakes <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Wells Coffee <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Dog-Friendly Patio <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Private Events <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Mizner Park <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- Feature Cards -->
+  <div class="home-features">
+    <div class="feature-card" onclick="navigate('menu')">
+      <span class="feature-card-emoji">🥞</span>
+      <h3>The Menu</h3>
+      <p>From cloud-like soufflé pancakes to eggs benedict and acaí bowls — every dish is crafted with intention and a touch of whimsy.</p>
+      <div class="feature-card-link">View Full Menu</div>
+    </div>
+    <div class="feature-card" onclick="navigate('events')">
+      <span class="feature-card-emoji">✨</span>
+      <h3>Private Events</h3>
+      <p>Birthdays, bridal showers, brand activations — our garden space transforms into something truly magical for your next occasion.</p>
+      <div class="feature-card-link">Plan Your Event</div>
+    </div>
+    <div class="feature-card" onclick="navigate('gallery')">
+      <span class="feature-card-emoji">📸</span>
+      <h3>Gallery</h3>
+      <p>The most Instagrammable café in Boca Raton. Browse our gallery and see why guests keep coming back to capture the moment.</p>
+      <div class="feature-card-link">See Gallery</div>
+    </div>
+  </div>
+
+  <!-- CTA Band -->
+  <div class="home-cta-band">
+    <div>
+      <h2>Ready for your<br><em>next favorite morning?</em></h2>
+    </div>
+    <button class="btn-white" onclick="navigate('contact')">Reserve Your Table</button>
+  </div>
+
+  <!-- Highlights -->
+  <div class="home-highlights">
+    <div class="home-highlights-left">
+      <div class="section-eyebrow">What Guests Say</div>
+      <h2>Loved by<br><em>Boca Raton</em></h2>
+      <p>We've built a community around great food, great coffee, and a space where everyone feels welcome — including your dog.</p>
+      <div class="review-pull">"First time going today, and it did not disappoint. The food was absolutely amazing."</div>
+      <div class="review-pull-attr">— Jason Richman, January 2025</div>
+      <br>
+      <span class="btn-pink" style="margin-top:1.5rem;" onclick="navigate('story')">Read Our Story</span>
+    </div>
+    <div class="home-highlights-right">
+      <div class="highlight-tile">
+        <div class="highlight-tile-icon">☕</div>
+        <div class="highlight-tile-title">Wells Coffee</div>
+        <div class="highlight-tile-text">Locally roasted, exclusively served at Kixi. Every cup is a small love letter to Boca.</div>
+      </div>
+      <div class="highlight-tile">
+        <div class="highlight-tile-icon">🌿</div>
+        <div class="highlight-tile-title">Garden Patio</div>
+        <div class="highlight-tile-text">Our dog-friendly outdoor garden is the best seat in Mizner Park.</div>
+      </div>
+      <div class="highlight-tile">
+        <div class="highlight-tile-icon">🥞</div>
+        <div class="highlight-tile-title">Soufflé Pancakes</div>
+        <div class="highlight-tile-text">The dish that started it all. Pillowy, Japanese-style, and absolutely worth the wait.</div>
+      </div>
+      <div class="highlight-tile">
+        <div class="highlight-tile-icon">🎉</div>
+        <div class="highlight-tile-title">Private Events</div>
+        <div class="highlight-tile-text">Host your next celebration in one of Boca's most beautiful intimate venues.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="site-footer">
+    <div class="footer-brand">
+      <span class="footer-logo">Kixi</span>
+      <p>Boca Raton's most enchanting café and garden. Where community, creativity, and great coffee meet.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a onclick="navigate('home')">Home</a>
+      <a onclick="navigate('menu')">Menu</a>
+      <a onclick="navigate('story')">Our Story</a>
+      <a onclick="navigate('gallery')">Gallery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <a>Mizner Park</a>
+      <a>Boca Raton, FL</a>
+      <a>Mon–Fri 8am–4pm</a>
+      <a>Sat–Sun 8am–5pm</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a>@kixicafe</a>
+      <a onclick="navigate('events')">Private Events</a>
+      <a onclick="navigate('contact')">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Kixi Café & Garden · Est. 2020 · Boca Raton, FL · All Rights Reserved</p>
+    <p>Built with love in South Florida</p>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════
+     MENU PAGE
+══════════════════════════════════════ -->
+<div id="page-menu" class="page">
+
+  <div class="menu-hero">
+    <div>
+      <div class="section-eyebrow">Breakfast · Brunch · Lunch</div>
+      <h1>The<br><em>Menu</em></h1>
+    </div>
+    <div class="menu-hero-right">
+      <p>Everything we serve is made with care, sourced thoughtfully, and plated beautifully. We believe food should feel like a little joy — every single time.</p>
+      <div class="menu-hero-tags">
+        <span class="menu-tag">☕ Wells Coffee</span>
+        <span class="menu-tag">🐾 Dog Friendly</span>
+        <span class="menu-tag">🌿 Fresh Daily</span>
+        <span class="menu-tag">🥞 Soufflé Pancakes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-nav-bar">
+    <div class="menu-nav-item active" onclick="scrollToCategory('cat-coffee',this)">Coffee & Drinks</div>
+    <div class="menu-nav-item" onclick="scrollToCategory('cat-breakfast',this)">Breakfast</div>
+    <div class="menu-nav-item" onclick="scrollToCategory('cat-brunch',this)">Brunch</div>
+    <div class="menu-nav-item" onclick="scrollToCategory('cat-signatures',this)">Signatures</div>
+    <div class="menu-nav-item" onclick="scrollToCategory('cat-lunch',this)">Lunch</div>
+    <div class="menu-nav-item" onclick="scrollToCategory('cat-sweets',this)">Sweets</div>
+  </div>
+
+  <!-- Coffee -->
+  <div class="menu-category" id="cat-coffee">
+    <div class="menu-category-header">
+      <h2>Coffee & Drinks</h2>
+      <span class="menu-cat-desc">— Sourced exclusively from Wells Coffee, Boca's finest local roaster</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">☕</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Classic Iced Latte</span><span class="menu-item-price">$6</span></div>
+          <div class="menu-item-desc">Wells Coffee espresso, whole or oat milk, poured over ice. Clean, bold, perfect.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">💜</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Lavender Oat Latte</span><span class="menu-item-price">$7</span></div>
+          <div class="menu-item-desc">House lavender syrup, oat milk, double shot espresso. Our most Instagrammed drink.</div>
+          <span class="menu-item-badge">fan favorite</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍵</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Matcha Latte</span><span class="menu-item-price">$7</span></div>
+          <div class="menu-item-desc">Ceremonial grade matcha, steamed oat or almond milk, honey optional.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🌸</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Rose Latte</span><span class="menu-item-price">$7</span></div>
+          <div class="menu-item-desc">Espresso, rose syrup, steamed milk. Fragrant, floral, and beautiful in a glass.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥤</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Fresh Smoothies</span><span class="menu-item-price">$9</span></div>
+          <div class="menu-item-desc">Ask about today's seasonal blend — rotating mango, berry, green, and tropical options.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🧃</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Cold Brew</span><span class="menu-item-price">$6</span></div>
+          <div class="menu-item-desc">18-hour cold steeped Wells Coffee. Smooth, low-acid, incredibly refreshing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breakfast -->
+  <div class="menu-category" id="cat-breakfast" style="background:var(--cream)">
+    <div class="menu-category-header">
+      <h2>Breakfast</h2>
+      <span class="menu-cat-desc">— Served daily from 8am</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥑</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Avocado Toast</span><span class="menu-item-price">$15</span></div>
+          <div class="menu-item-desc">Smashed avocado on sourdough, everything bagel seasoning, poached egg, chili flakes.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥚</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Classic Kixi Breakfast</span><span class="menu-item-price">$16</span></div>
+          <div class="menu-item-desc">Two eggs any style, choice of protein, home fries, toast. The Boca morning standard.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🐟</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Smoked Salmon Toast</span><span class="menu-item-price">$18</span></div>
+          <div class="menu-item-desc">House whipped cream cheese, cucumber ribbons, capers, everything seasoning.</div>
+          <span class="menu-item-badge">chef's pick</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🫐</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Acaí Bowl</span><span class="menu-item-price">$14</span></div>
+          <div class="menu-item-desc">Blended acaí, granola, banana, honey, fresh berry medley.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brunch -->
+  <div class="menu-category" id="cat-brunch">
+    <div class="menu-category-header">
+      <h2>Brunch</h2>
+      <span class="menu-cat-desc">— Weekends from 10am to 3pm</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍳</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Classic Eggs Benedict</span><span class="menu-item-price">$16</span></div>
+          <div class="menu-item-desc">Poached eggs, hollandaise, Canadian bacon, toasted English muffin, home fries.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥬</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Garden Benny</span><span class="menu-item-price">$17</span></div>
+          <div class="menu-item-desc">Poached eggs, avocado, roasted tomato, arugula, truffle hollandaise. Vegetarian.</div>
+          <span class="menu-item-badge">vegetarian</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🐟</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Salmon Benny</span><span class="menu-item-price">$19</span></div>
+          <div class="menu-item-desc">Smoked salmon, poached eggs, dill hollandaise, capers on a toasted brioche.</div>
+          <span class="menu-item-badge">bestseller</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🧇</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">French Toast Stack</span><span class="menu-item-price">$15</span></div>
+          <div class="menu-item-desc">Thick-cut brioche, cinnamon custard, fresh strawberries, whipped cream, maple syrup.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signatures -->
+  <div class="menu-category" id="cat-signatures" style="background:var(--cream)">
+    <div class="menu-category-header">
+      <h2>Kixi Signatures</h2>
+      <span class="menu-cat-desc">— The dishes that made us famous</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥞</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Japanese Soufflé Pancakes</span><span class="menu-item-price">$18</span></div>
+          <div class="menu-item-desc">Cloud-like, jiggly, impossibly light. Fresh berries, whipped cream, maple syrup. Worth every minute of the wait.</div>
+          <span class="menu-item-badge">⭐ signature dish</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍗</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Iced Coffee & Fried Chicken</span><span class="menu-item-price">$19</span></div>
+          <div class="menu-item-desc">The combo that launched a thousand visits. Crispy buttermilk fried chicken, Wells iced coffee, hot honey drizzle.</div>
+          <span class="menu-item-badge">⭐ must try</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lunch -->
+  <div class="menu-category" id="cat-lunch">
+    <div class="menu-category-header">
+      <h2>Lunch</h2>
+      <span class="menu-cat-desc">— Available daily from 11am to 4pm</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥗</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Kixi Garden Salad</span><span class="menu-item-price">$15</span></div>
+          <div class="menu-item-desc">Mixed greens, pickled red onion, cherry tomato, cucumber, house lemon vinaigrette.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥪</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Grilled Chicken Club</span><span class="menu-item-price">$17</span></div>
+          <div class="menu-item-desc">Herb-marinated chicken, bacon, avocado, arugula, tomato, garlic aioli on toasted sourdough.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍜</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Soup of the Day</span><span class="menu-item-price">$9</span></div>
+          <div class="menu-item-desc">Rotating daily. Ask your server — always seasonal, always made in-house.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🥙</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Veggie Wrap</span><span class="menu-item-price">$14</span></div>
+          <div class="menu-item-desc">Roasted seasonal vegetables, hummus, feta, spinach wrap. Light, fresh, satisfying.</div>
+          <span class="menu-item-badge">vegetarian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sweets -->
+  <div class="menu-category" id="cat-sweets" style="background:var(--cream)">
+    <div class="menu-category-header">
+      <h2>Sweets</h2>
+      <span class="menu-cat-desc">— Because every meal deserves a happy ending</span>
+    </div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍰</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Rotating Cake Slice</span><span class="menu-item-price">$9</span></div>
+          <div class="menu-item-desc">Ask about today's slice — strawberry cream, lemon tart, or classic vanilla.</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-emoji">🍪</span>
+        <div class="menu-item-body">
+          <div class="menu-item-top"><span class="menu-item-name">Freshly Baked Cookie</span><span class="menu-item-price">$4</span></div>
+          <div class="menu-item-desc">Baked fresh daily — chocolate chip, brown butter, or seasonal special.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="site-footer">
+    <div class="footer-brand"><span class="footer-logo">Kixi</span><p>Boca Raton's most enchanting café and garden.</p></div>
+    <div class="footer-col"><h4>Pages</h4><a onclick="navigate('home')">Home</a><a onclick="navigate('story')">Our Story</a><a onclick="navigate('gallery')">Gallery</a><a onclick="navigate('events')">Events</a></div>
+    <div class="footer-col"><h4>Hours</h4><a>Mon–Fri 8am–4pm</a><a>Sat–Sun 8am–5pm</a></div>
+    <div class="footer-col"><h4>Find Us</h4><a>Mizner Park</a><a>Boca Raton, FL</a><a onclick="navigate('contact')">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kixi Café & Garden · All Rights Reserved</p><p>Boca Raton, FL</p></div>
+
+</div><!-- /page-menu -->
+
+
+<!-- ══════════════════════════════════════
+     OUR STORY PAGE
+══════════════════════════════════════ -->
+<div id="page-story" class="page">
+
+  <div class="story-hero">
+    <div class="section-eyebrow">Est. 2020</div>
+    <h1>More Than<br>a <em>Coffee Shop</em></h1>
+  </div>
+
+  <div class="story-body">
+    <div class="story-body-left">
+      <div class="section-eyebrow">Our Beginning</div>
+      <p>Kixi Café was born in 2020 with a simple belief: <strong>mornings should feel magical.</strong> We opened our doors in the heart of Mizner Park, Boca Raton, during one of the most uncertain times in recent memory — and the community showed up for us in ways we'll never forget.</p>
+      <p>From day one, we partnered with <strong>Wells Coffee</strong>, Boca's beloved local roaster, because we believe great coffee starts with relationships. Every cup we pull is a nod to that partnership and to the farmers and makers behind every bean.</p>
+      <p>Our <strong>Japanese soufflé pancakes</strong> became our calling card almost immediately — light, pillowy, deeply satisfying. They embody everything Kixi stands for: a little unexpected, a lot of joy, and worth every moment.</p>
+      <p>Today, Kixi is more than a café. We're a <strong>community gathering place</strong> — a dog-friendly garden where neighbors become regulars, and regulars become family. We're proud to be Boca Raton's most Instagrammable spot, and even prouder of the warmth that keeps people coming back.</p>
+    </div>
+    <div class="story-body-right">
+      <div class="section-eyebrow">What We Stand For</div>
+      <div class="story-value-item">
+        <div class="story-value-num">01</div>
+        <div class="story-value-content">
+          <h3>Community First</h3>
+          <p>Every decision we make starts with our neighborhood. Boca Raton is home, and we take that seriously.</p>
+        </div>
+      </div>
+      <div class="story-value-item">
+        <div class="story-value-num">02</div>
+        <div class="story-value-content">
+          <h3>Local Partnerships</h3>
+          <p>We source from local producers whenever possible. Wells Coffee is our partner, not just our vendor.</p>
+        </div>
+      </div>
+      <div class="story-value-item">
+        <div class="story-value-num">03</div>
+        <div class="story-value-content">
+          <h3>Creativity on the Plate</h3>
+          <p>We're not interested in ordinary. Every dish is a chance to create something worth talking about.</p>
+        </div>
+      </div>
+      <div class="story-value-item">
+        <div class="story-value-num">04</div>
+        <div class="story-value-content">
+          <h3>Welcome to All</h3>
+          <p>Dog-friendly, kid-friendly, everybody-friendly. Our patio has space for every kind of guest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-team-band">
+    <div>
+      <h2>Come See Us<br><em>in Person</em></h2>
+    </div>
+    <div>
+      <p>We're located in Mizner Park — one of Boca Raton's most vibrant and walkable destinations. Whether you're a first-time visitor or a longtime regular, we can't wait to make your morning a little brighter.</p>
+      <br><br>
+      <span class="btn-white" onclick="navigate('contact')">Get Directions & Hours</span>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="footer-brand"><span class="footer-logo">Kixi</span><p>Boca Raton's most enchanting café and garden.</p></div>
+    <div class="footer-col"><h4>Pages</h4><a onclick="navigate('home')">Home</a><a onclick="navigate('menu')">Menu</a><a onclick="navigate('gallery')">Gallery</a><a onclick="navigate('events')">Events</a></div>
+    <div class="footer-col"><h4>Hours</h4><a>Mon–Fri 8am–4pm</a><a>Sat–Sun 8am–5pm</a></div>
+    <div class="footer-col"><h4>Find Us</h4><a>Mizner Park</a><a>Boca Raton, FL</a><a onclick="navigate('contact')">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kixi Café & Garden · All Rights Reserved</p><p>Boca Raton, FL</p></div>
+
+</div><!-- /page-story -->
+
+
+<!-- ══════════════════════════════════════
+     GALLERY PAGE
+══════════════════════════════════════ -->
+<div id="page-gallery" class="page">
+
+  <div class="gallery-hero">
+    <div class="section-eyebrow">Boca's Most Instagrammable Café</div>
+    <h1>A Feast<br>for the <em>Eyes</em></h1>
+    <p>Every corner of Kixi was designed to be beautiful. Here's a glimpse of the magic — come experience it in person.</p>
+  </div>
+
+  <div class="gallery-masonry">
+    <div class="gallery-cell gc-tall g-a"><div class="gallery-cell-inner">🥞</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Soufflé Pancakes</span></div></div>
+    <div class="gallery-cell gc-med g-b"><div class="gallery-cell-inner">☕</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Morning Latte Art</span></div></div>
+    <div class="gallery-cell gc-short g-c"><div class="gallery-cell-inner">🌸</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Garden in Bloom</span></div></div>
+    <div class="gallery-cell gc-wide g-d"><div class="gallery-cell-inner">🍳</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Sunday Brunch Spread</span></div></div>
+    <div class="gallery-cell gc-short g-e"><div class="gallery-cell-inner">🐾</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Dog-Friendly Mornings</span></div></div>
+    <div class="gallery-cell gc-tall g-f"><div class="gallery-cell-inner">🥗</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Garden Salad</span></div></div>
+    <div class="gallery-cell gc-med g-g"><div class="gallery-cell-inner">🍗</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Fried Chicken & Coffee</span></div></div>
+    <div class="gallery-cell gc-short g-h"><div class="gallery-cell-inner">🥑</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Avocado Toast</span></div></div>
+    <div class="gallery-cell gc-wide g-i"><div class="gallery-cell-inner">✨</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Private Event Setup</span></div></div>
+    <div class="gallery-cell gc-med g-a"><div class="gallery-cell-inner">🫐</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Acaí Bowl</span></div></div>
+    <div class="gallery-cell gc-tall g-b"><div class="gallery-cell-inner">🌿</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Kixi Patio</span></div></div>
+    <div class="gallery-cell gc-med g-c"><div class="gallery-cell-inner">🎂</div><div class="gallery-cell-overlay"><span class="gallery-cell-label">Birthday Celebration</span></div></div>
+  </div>
+
+  <div class="gallery-ig-banner">
+    <div>
+      <h2>Tag us on <em>Instagram</em></h2>
+      <p>@kixicafe · Share your Kixi moments with us</p>
+    </div>
+    <span class="btn-pink">Follow @kixicafe</span>
+  </div>
+
+  <div class="site-footer">
+    <div class="footer-brand"><span class="footer-logo">Kixi</span><p>Boca Raton's most enchanting café and garden.</p></div>
+    <div class="footer-col"><h4>Pages</h4><a onclick="navigate('home')">Home</a><a onclick="navigate('menu')">Menu</a><a onclick="navigate('story')">Our Story</a><a onclick="navigate('events')">Events</a></div>
+    <div class="footer-col"><h4>Hours</h4><a>Mon–Fri 8am–4pm</a><a>Sat–Sun 8am–5pm</a></div>
+    <div class="footer-col"><h4>Find Us</h4><a>Mizner Park</a><a>Boca Raton, FL</a><a onclick="navigate('contact')">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kixi Café & Garden · All Rights Reserved</p><p>Boca Raton, FL</p></div>
+
+</div><!-- /page-gallery -->
+
+
+<!-- ══════════════════════════════════════
+     PRIVATE EVENTS PAGE
+══════════════════════════════════════ -->
+<div id="page-events" class="page">
+
+  <div class="events-hero">
+    <div class="section-eyebrow">Host at Kixi</div>
+    <h1>Make It<br><em>Unforgettable</em></h1>
+    <p>Our garden space transforms into a breathtaking venue for intimate celebrations. Birthdays, showers, brand moments — we handle the magic.</p>
+    <span class="btn-dark">Start Planning ↓</span>
+  </div>
+
+  <div class="events-types">
+    <div class="event-type-card">
+      <span class="event-type-icon">🎂</span>
+      <h3>Birthday Parties</h3>
+      <p>Celebrate your special day surrounded by blooms, great food, and people you love.</p>
+    </div>
+    <div class="event-type-card">
+      <span class="event-type-icon">💍</span>
+      <h3>Bridal Showers</h3>
+      <p>An intimate, whimsical space that makes the bride-to-be feel truly celebrated.</p>
+    </div>
+    <div class="event-type-card">
+      <span class="event-type-icon">👶</span>
+      <h3>Baby Showers</h3>
+      <p>Soft, beautiful, and full of warmth — perfect for welcoming new life.</p>
+    </div>
+    <div class="event-type-card">
+      <span class="event-type-icon">🏢</span>
+      <h3>Brand & Corporate</h3>
+      <p>Product launches, team brunches, client entertainment. We'll make you look incredible.</p>
+    </div>
+  </div>
+
+  <div class="events-form-section">
+    <div class="events-form-left">
+      <div class="section-eyebrow">Why Host at Kixi</div>
+      <h2>The Garden is Yours</h2>
+      <p>Our garden patio is one of Boca Raton's most magical private event spaces. We work with you to build the perfect menu, décor plan, and timeline so you can enjoy every moment.</p>
+      <div class="events-perks">
+        <div class="events-perk">Exclusive garden buyout options</div>
+        <div class="events-perk">Custom menu curation</div>
+        <div class="events-perk">Floral & décor coordination</div>
+        <div class="events-perk">Dedicated event coordinator</div>
+        <div class="events-perk">Private Wells Coffee bar setup</div>
+        <div class="events-perk">On-site day-of support</div>
+      </div>
+    </div>
+    <div class="events-form-right">
+      <h3>Let's Start Planning</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="e.g. Maria"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="e.g. Rodriguez"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="hello@email.com"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="(561) 555-0000"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Event Type</label><select><option>Birthday Party</option><option>Bridal Shower</option><option>Baby Shower</option><option>Corporate Event</option><option>Other</option></select></div>
+        <div class="form-group"><label>Guest Count</label><select><option>Under 10</option><option>10–25</option><option>25–50</option><option>50+</option></select></div>
+      </div>
+      <div class="form-group"><label>Preferred Date</label><input type="text" placeholder="e.g. April 12, 2025 or flexible"></div>
+      <div class="form-group"><label>Tell Us More</label><textarea rows="3" placeholder="Vision, must-haves, anything special..."></textarea></div>
+      <button class="btn-dark" style="width:100%;border:none;cursor:pointer;">Send Inquiry →</button>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="footer-brand"><span class="footer-logo">Kixi</span><p>Boca Raton's most enchanting café and garden.</p></div>
+    <div class="footer-col"><h4>Pages</h4><a onclick="navigate('home')">Home</a><a onclick="navigate('menu')">Menu</a><a onclick="navigate('story')">Our Story</a><a onclick="navigate('gallery')">Gallery</a></div>
+    <div class="footer-col"><h4>Hours</h4><a>Mon–Fri 8am–4pm</a><a>Sat–Sun 8am–5pm</a></div>
+    <div class="footer-col"><h4>Find Us</h4><a>Mizner Park</a><a>Boca Raton, FL</a><a onclick="navigate('contact')">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kixi Café & Garden · All Rights Reserved</p><p>Boca Raton, FL</p></div>
+
+</div><!-- /page-events -->
+
+
+<!-- ══════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="contact-hero">
+    <div>
+      <div class="section-eyebrow">We'd Love to See You</div>
+      <h1>Come<br>Say <em>Hello</em></h1>
+    </div>
+    <div class="contact-hero-right">
+      <p>We're located in the heart of Mizner Park, Boca Raton. Walk-ins are always welcome, and reservations are recommended for groups of 6 or more. Come as you are — and bring your dog.</p>
+    </div>
+  </div>
+
+  <div class="contact-details">
+    <div class="contact-detail-card">
+      <span class="contact-detail-icon">📍</span>
+      <h3>Location</h3>
+      <p>Mizner Park<br>Boca Raton, FL 33432</p>
+      <br>
+      <a href="#">Get Directions →</a>
+    </div>
+    <div class="contact-detail-card">
+      <span class="contact-detail-icon">⏰</span>
+      <h3>Hours</h3>
+      <p>Monday – Friday: 8am – 4pm<br>Saturday – Sunday: 8am – 5pm</p>
+      <br>
+      <p style="color:var(--blush-deep);font-size:0.82rem;font-family:'DM Sans',sans-serif;">Kitchen closes 30 min before closing.</p>
+    </div>
+    <div class="contact-detail-card">
+      <span class="contact-detail-icon">📱</span>
+      <h3>Get in Touch</h3>
+      <a href="tel:+15615550000">(561) 555-0000</a>
+      <a href="mailto:hello@kixicafe.com">hello@kixicafe.com</a>
+      <a href="#">@kixicafe on Instagram</a>
+    </div>
+  </div>
+
+  <div class="contact-form-section">
+    <div class="contact-form-left">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.5)">Hours at a Glance</div>
+      <h2>We're Open<br><em>Every Day</em></h2>
+      <p>Walk-ins welcome. For parties of 6 or more, reservations are recommended. Private events available by inquiry.</p>
+      <div class="hours-list">
+        <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">8:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">8:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">8:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">8:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">8:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">8:00 AM – 5:00 PM</span></div>
+      </div>
+    </div>
+    <div class="contact-form-right">
+      <h3>Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Maria Rodriguez"></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="hello@email.com"></div>
+      </div>
+      <div class="form-group"><label>Subject</label><select><option>General Inquiry</option><option>Reservation Request</option><option>Private Events</option><option>Feedback</option><option>Press & Media</option></select></div>
+      <div class="form-group"><label>Message</label><textarea rows="5" placeholder="How can we help?"></textarea></div>
+      <button class="btn-dark" style="width:100%;border:none;cursor:pointer;">Send Message →</button>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="footer-brand"><span class="footer-logo">Kixi</span><p>Boca Raton's most enchanting café and garden.</p></div>
+    <div class="footer-col"><h4>Pages</h4><a onclick="navigate('home')">Home</a><a onclick="navigate('menu')">Menu</a><a onclick="navigate('story')">Our Story</a><a onclick="navigate('gallery')">Gallery</a></div>
+    <div class="footer-col"><h4>Hours</h4><a>Mon–Fri 8am–4pm</a><a>Sat–Sun 8am–5pm</a></div>
+    <div class="footer-col"><h4>Find Us</h4><a>Mizner Park</a><a>Boca Raton, FL</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Kixi Café & Garden · All Rights Reserved</p><p>Boca Raton, FL</p></div>
+
+</div><!-- /page-contact -->
+
+<script>
+function navigate(page) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target page
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+  // Update nav active state
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === page);
+  });
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToCategory(id, el) {
+  document.querySelectorAll('.menu-nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  const target = document.getElementById(id);
+  if (target) {
+    const offset = 80 + 52; // nav + sticky menu bar
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 30 ? '0 4px 28px rgba(0,0,0,0.07)' : 'none';
+});
+</script>
+</body>
+</html>
